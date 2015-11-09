@@ -17,7 +17,7 @@ class Actions {
       'messageReceived'
     );
   }
-  login(args) {
+  login(router) {
     return (dispatch) => {
       var firebaseRef = new Firebase('https://react-stack-jn.firebaseio.com/');
       firebaseRef.authWithOAuthPopup("google", (error, user) => {
@@ -26,6 +26,8 @@ class Actions {
         }
 
         dispatch(user);
+
+        router.transitionTo('/chat');
       });
     }
   }
